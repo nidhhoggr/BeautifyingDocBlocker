@@ -1,0 +1,13 @@
+#!/usr/bin/php
+<?php
+error_reporting(E_ALL ^ E_NOTICE);
+
+require_once(dirname(__FILE__) . '/../classes/Beautify.class.php');
+
+try {
+    $b = new Beautify($argv);
+}
+catch(Exception $e) {
+    echo $e;
+}
+
