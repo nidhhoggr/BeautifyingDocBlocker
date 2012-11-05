@@ -2,16 +2,16 @@ BeautifyingDocBlocker
 =====================
 
 #About
--author: Joseph Persie
--email: persie.joseph@gmail.com
--description:
+###author: Joseph Persie
+###email: persie.joseph@gmail.com
+###description:
 A set of classes to that implements two different pear packages to beautify the php document
 and the apply doc blocks
 
-###Dependencies 
+#Dependencies 
 
 * PHP_DocBlockGenerator: http://pear.php.net/package/PHP_DocBlockGenerator
 * PHP_Beautifier: http://pear.php.net/package/PHP_Beautifier
 
-###Usage 
+#Usage 
 ./beautifier input.php output.php
