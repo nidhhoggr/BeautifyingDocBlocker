@@ -83,13 +83,20 @@ class Beautify extends PHP_Beautifier_Batch
      */
     public function __construct($args)
     {
+
+        extract($args);
         //set the file to beautify
         $this->setFiles($args);
         //instantiate PHP_Beautifier pear class
         $oBeaut = new PHP_Beautifier();
         parent::__construct($oBeaut);
-        $this->beautifyFile();
-        $this->addDocBlocks();
+
+        if(isset($b))
+            $this->beautifyFile();
+
+        
+        if(isset($d))
+            $this->addDocBlocks();
     }
 
     /**
@@ -102,21 +109,29 @@ class Beautify extends PHP_Beautifier_Batch
      */
     private function setFiles($args)
     {
-        $inputfilename = $args[self::ARGS_INPUT_FILE_KEY];
 
-        if (empty($inputfilename)) {
-            throw new MissingArgumentException('An input filename must be provided', 600);
+        extract($args);
+
+        if(isset($i)) {
+
+            if (empty($i)) {
+                throw new MissingArgumentException('An input filename must be provided', 600);
+            }
+
+            $this->input_filename = $i;
+
         }
 
-        $this->input_filename = $inputfilename;
+        if(isset($o)) {
 
-        $outputfilename = $args[self::ARGS_OUTPUT_FILE_KEY];
+            if (empty($o)) {
+                throw new MissingArgumentException('An output filename must be provided', 601);
+            }
 
-        if (empty($outputfilename)) {
-            throw new MissingArgumentException('An output filename must be provided', 601);
+            $this->output_filename = $o;
+        } else {
+            $this->output_filename = $this->input_filename;
         }
-
-        $this->output_filename = $outputfilename;
     }
 
     /**

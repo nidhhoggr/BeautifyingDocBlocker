@@ -4,10 +4,13 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 require_once(dirname(__FILE__) . '/../classes/Beautify.class.php');
 
+$args = getopt("bdi:o::");
+
+var_dump($args);
+
 try {
-    $b = new Beautify($argv);
+    $b = new Beautify($args);
 }
 catch(Exception $e) {
     echo $e;
 }
-

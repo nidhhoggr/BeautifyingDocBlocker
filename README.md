@@ -14,5 +14,14 @@ and then apply doc blocks.
 * PHP_DocBlockGenerator: http://pear.php.net/package/PHP_DocBlockGenerator
 * PHP_Beautifier: http://pear.php.net/package/PHP_Beautifier
 
-###Usage 
-./beautify input.php output.php
+###Usage
+
+* i (required) - input file
+* o (optional) - output file
+* b - beautify the input file
+* d - doc block the output file
+
+./beautify -bd -i=input.php -o=output.php
+
+find ./test -type f -exec ./beautify -b -i={} \;
+
