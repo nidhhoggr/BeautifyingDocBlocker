@@ -67,16 +67,6 @@ class Beautify extends PHP_Beautifier_Batch
 {
 
     /**
-     * the key of the input file
-     */
-    const ARGS_INPUT_FILE_KEY = 1;
-
-    /**
-     * the key of the output file
-     */
-    const ARGS_OUTPUT_FILE_KEY = 2;
-
-    /**
      * @param Array $args an array obtained from argv
      * @return void   
      * @access public 
