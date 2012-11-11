@@ -2,12 +2,12 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
 
-require_once(dirname(__FILE__) . '/../classes/Beautify.class.php');
+require_once(dirname(__FILE__) . '/../classes/BeautifyingDocBlocker.class.php');
 
-$args = getopt("bdi:o::");
+$args = getopt("bdi:o::s::");
 
 try {
-    $b = new Beautify($args);
+    $b = new BeautifyingDocBlocker($args);
 }
 catch(Exception $e) {
     echo $e;

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  * 
  * @category  PHP
- * @package   Beautify
+ * @package   BeautifyingDocBlocker
  * @author    Joseph Persie <persie.joseph#gmail.com>
  * @copyright 2012 Joseph Persie
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License
@@ -51,19 +51,21 @@ require_once ('PHP/Beautifier/Batch.php');
 require_once ('PHP/DocBlockGenerator.php');
 
 /**
- * Short description for class
- * 
- * Long description (if any) ...
- * 
+ * require the doc blockiniparser
+ */
+require_once(dirname(__FILE__) . '/DocBlockIniParser.class.php');
+
+
+/**
  * @category  PHP
- * @package   Beautify
+ * @package   BeautifyingDocBlocker
  * @author    Joseph Persie <persie.joseph#gmail.com>
  * @copyright 2012 Joseph Persie
  * @license   http://www.opensource.org/licenses/mit-license.php The MIT License
  * @version   Release: @package_version@
  * @link      http://pear.php.net/package/Beautify
  */
-class Beautify extends PHP_Beautifier_Batch
+class BeautifyingDocBlocker extends PHP_Beautifier_Batch
 {
 
     /**
@@ -79,14 +81,22 @@ class Beautify extends PHP_Beautifier_Batch
         $this->setFiles($args);
         //instantiate PHP_Beautifier pear class
         $oBeaut = new PHP_Beautifier();
+
         parent::__construct($oBeaut);
 
         if(isset($b))
             $this->beautifyFile();
 
         
-        if(isset($d))
+        if(isset($d)) {
+
+            if(isset($s))
+                $this->docBlockIniParser = new DocBlockIniParser($s);
+            else 
+                $this->docBlockIniParser = new DocBlockIniParser();
+            
             $this->addDocBlocks();
+        }
     }
 
     /**
@@ -153,14 +163,8 @@ class Beautify extends PHP_Beautifier_Batch
      */
     private function addDocBlocks()
     {
-        $param = array(
-            'license' => 'mit',
-            'category' => 'PHP',
-            'author' => 'Joseph Persie',
-            'email' => 'persie.joseph@gmail.com',
-            'year' => '2012'
-        );
+        $settings = $this->docBlockIniParser->getSettings();
         $docblockgen = new PHP_DocBlockGenerator();
-        $docblockgen->generate($this->output_filename, $param, $this->output_filename);
+        $docblockgen->generate($this->output_filename, $settings, $this->output_filename);
     }
 }

@@ -18,10 +18,11 @@ and then apply doc blocks.
 
 * i (required) - input file
 * o (optional) - output file
-* b - beautify the input file
-* d - doc block the output file
+* s (optional) - the name of the ini file to parse to provide arguments to the doc block generator
+* b (optional) (takes no arguments) - beautify the output file
+* d (optional) (takes no arguments) - doc block the output file
 
-./beautify -bd -i=input.php -o=output.php
+./beautify -bd -i=input.php -o=output.php -s=joseph
 
 find ./test -type f -exec ./beautify -b -i={} \;
 
